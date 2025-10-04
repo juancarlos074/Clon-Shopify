@@ -9,39 +9,49 @@ import Productos from './paginas/Productos/Productos'
 import Agregar_Producto from './paginas/Agregar Producto/Agregar_Producto'
 import Coleccion from './paginas/Coleccion/Coleccion'
 import Inventario from './paginas/Inventario/Inventario'
+import Login from './paginas/Login/Login'
 
 function App() {
   const location = useLocation()
-  const isPrincipal = location.pathname === "/"
+
+  // 🧠 Ocultar Header y Menuprincipal en "/" y "/Login"
+  const hideLayout = location.pathname === "/" || location.pathname === "/Login"
 
   return (
     <>
-      {/* Header y menú lateral solo si no estamos en la pantalla principal */}
-      {!isPrincipal && <Header />}
+      {/* Mostrar Header y menú lateral solo si NO estamos en "/" o "/Login" */}
+      {!hideLayout && (
+        <>
+          <Header />
+          <section className="d-flex">
+            <Menuprincipal />
+            <div className="flex-grow-1 p-4">
+              <Routes>
+                <Route path="/" element={<Principal />} />
+                <Route path="/Pedidos" element={<Pedidos />} />
+                <Route path="/Home" element={<Home />} />
+                <Route path="/Login" element={<Login />} />
+                <Route path="/Productos" element={<Productos />} />
+                <Route path="/Agregar_Producto" element={<Agregar_Producto />} />
+                <Route path="/Coleccion" element={<Coleccion />} />
+                <Route path="/Inventario" element={<Inventario />} />
+              </Routes>
+            </div>
+          </section>
+        </>
+      )}
 
-      <section className="d-flex">
-        {!isPrincipal && <Menuprincipal />}
-
-        {/* Contenido principal */}
-        <div className="flex-grow-1 p-4">
-          <Routes>
-            <Route path="/" element={<Principal />} />
-            <Route path="/Pedidos" element={<Pedidos />} />
-            <Route path="/Home" element={<Home />} />
-
-            {/* 🏷️ Rutas anidadas de Productos */}
-            <Route path="/Productos" element={<Productos />}/>
-            <Route path="/Agregar_Producto" element={<Agregar_Producto />} />
-            <Route path="/Coleccion" element={<Coleccion></Coleccion> } />
-            <Route path="/Inventario" element={<Inventario/>}/>
-          </Routes>
-        </div>
-      </section>
+      {/* Mostrar SOLO el contenido del login o principal */}
+      {hideLayout && (
+        <Routes>
+          <Route path="/" element={<Principal />} />
+          <Route path="/Login" element={<Login />} />
+        </Routes>
+      )}
     </>
   )
 }
 
-// 👇 Envolvemos todo en BrowserRouter una sola vez
 export default function AppWrapper() {
   return (
     <BrowserRouter>
