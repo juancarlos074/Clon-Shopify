@@ -1,0 +1,12 @@
+table th, table td {
+  vertical-align: middle;
+}
+
+.btn-dark {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+h4 {
+  font-weight: 600;
+}

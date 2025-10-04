@@ -1,8 +1,8 @@
 export default function Home() {
   return (
-    <section className="bg-body container d-flex flex-column align-items-center justify-content-center text-center" style={{width:"60%", border:"solid 1px blue"}}>
+    <section className="bg-body container d-flex flex-column align-items-center justify-content-center text-center" style={{width:"70%"}}>
       <section>
-        <section className="d-flex" style={{border:"solid 1px green"}}>
+        <section className="d-flex" >
           <h5 className="p-2 w-100">¡Te damos la bienvenida a Shopify!</h5>
           <p>¿Tienes preguntas? 01 -800-5190739</p>
         </section>
@@ -10,7 +10,7 @@ export default function Home() {
         <section>
           <a href="">Agregar nombre de la tienda 🖋️</a>
 
-          <section className="d-flex" style={{border:"solid 1px green"}}>
+          <section className="d-flex" >
             <section className="w-50">
               <figure>
                 <video src=""></video>
@@ -42,7 +42,7 @@ export default function Home() {
             </section>
           </section>
 
-          <section className="d-flex justify-content-between" style={{border:"solid 1px green"}}>
+          <section className="d-flex justify-content-between" >
             <section className="w-25 h-25">
               <h6>Agrega formas de pago</h6>
               <figure className="d-flex justify-content-around">
@@ -54,7 +54,7 @@ export default function Home() {
               <button >Activar</button>
             </section>
             
-            <section className="w-25 h-25" style={{border:"solid 1px green"}}>
+            <section className="w-25 h-25" >
               <h6>Revisa las tarifas de envío</h6>
                 <section className="d-flex justify-content-evenly">
                   <section className="d-flex w-50">
@@ -68,7 +68,7 @@ export default function Home() {
               <button>Revisar</button>
             </section>
 
-            <section className="w-25 h-25" style={{border:"solid 1px green"}}>
+            <section className="w-25 h-25" >
               <h6>Personaliza tu dominio</h6>
               <section>
                 <a href="99aezi-k3.myshopify.com">99aezi-k3.myshopify.com</a>
