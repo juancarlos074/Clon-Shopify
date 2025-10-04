@@ -1,6 +1,6 @@
 import './App.css'
 import Header from './componentes/header'
-import Menuprincipal from './componentes/menuprincipal'
+import Menuprincipal from './componentes/Menuprincipal'
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import Home from './paginas/Home'
 import Pedidos from './paginas/Pedidos/Pedidos'
