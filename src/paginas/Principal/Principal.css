@@ -1,10 +1,34 @@
-.app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #f3f4f6;
+/* =======================================================
+   RESET GLOBAL
+   ======================================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background: #000;
+}
+
+.principal-page{
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =======================================================
+   MAIN CONTENT + FOOTER BASE
+   ======================================================= */
 .main-content {
   flex: 1;
   display: flex;
@@ -34,18 +58,6 @@
   margin-bottom: 4rem;
 }
 
-@media (min-width: 768px) {
-  .footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .footer-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
-
 .footer-column {
   display: flex;
   flex-direction: column;
@@ -67,7 +79,6 @@
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  margin-top: 0;
 }
 
 .footer-list {
@@ -100,13 +111,6 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .footer-bottom-content {
-    flex-direction: row;
-    justify-content: space-between;
-  }
 }
 
 .footer-info {
@@ -143,7 +147,6 @@
   color: #d1d5db;
   cursor: pointer;
   font-size: 0.875rem;
-  padding: 0;
   transition: color 0.2s ease;
 }
 
@@ -173,20 +176,9 @@
   height: 1.25rem;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
+/* =======================================================
+   HERO + NAVBAR
+   ======================================================= */
 .hero-container {
   position: relative;
   width: 100%;
@@ -194,29 +186,27 @@ body {
   overflow: hidden;
 }
 
-/* Video de fondo */
 .video-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;   /* ajusta el video sin deformar */
-  z-index: -2;         /* siempre detrás */
+  object-fit: cover;
+  z-index: -2;
 }
 
-/* Overlay oscuro encima del video */
 .video-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* filtro más oscuro */
+  background: rgba(0, 0, 0, 0.5);
   z-index: -1;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -281,11 +271,6 @@ body {
   opacity: 0.8;
 }
 
-.nav-link svg {
-  width: 16px;
-  height: 16px;
-}
-
 .navbar-right {
   display: flex;
   align-items: center;
@@ -298,7 +283,6 @@ body {
   border: none;
   padding: 10px 20px;
   font-size: 16px;
-  font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -312,7 +296,6 @@ body {
   color: #000;
   border: none;
   padding: 12px 24px;
-  font-size: 16px;
   font-weight: 600;
   border-radius: 6px;
   cursor: pointer;
@@ -324,7 +307,7 @@ body {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
-/* Hero content */
+/* HERO CONTENT */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -337,23 +320,17 @@ body {
   margin: 0 auto;
 }
 
-.hero-main {
-  max-width: 700px;
-}
-
 .hero-title {
   font-size: 80px;
   font-weight: 600;
   line-height: 1.1;
   margin-bottom: 32px;
   color: #fff;
-  letter-spacing: -0.02em;
 }
 
 .hero-subtitle {
   font-size: 22px;
   font-weight: 400;
-  line-height: 1.5;
   margin-bottom: 40px;
   color: #fff;
   opacity: 0.95;
@@ -370,7 +347,6 @@ body {
   background-color: #fff;
   color: #000;
   padding: 16px 32px;
-  font-size: 16px;
   font-weight: 600;
   border: none;
   border-radius: 8px;
@@ -387,8 +363,6 @@ body {
   background-color: transparent;
   color: #fff;
   padding: 16px 32px;
-  font-size: 16px;
-  font-weight: 600;
   border: 2px solid #fff;
   border-radius: 8px;
   cursor: pointer;
@@ -400,7 +374,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* Info card */
+/* INFO CARD */
 .info-card {
   position: absolute;
   bottom: 60px;
@@ -408,38 +382,140 @@ body {
   z-index: 3;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   padding: 24px;
   max-width: 320px;
   color: #fff;
 }
 
-.info-card-title {
+/* =======================================================
+   COMMERCE SECTION
+   ======================================================= */
+.commerce-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #02090a;
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 14px;
+  justify-content: center;
+  padding: 80px 40px;
+}
+
+.content-wrapper {
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.main-title {
+  font-size: 72px;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin-bottom: 48px;
   color: #fff;
 }
 
-.info-card-title svg {
-  width: 16px;
-  height: 16px;
-}
-
-.info-card-subtitle {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.info-card-description {
-  font-size: 14px;
-  opacity: 0.9;
+.description {
+  font-size: 28px;
   line-height: 1.5;
+  color: #fff;
+  margin-bottom: 80px;
+}
+
+.mockups-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.mockup-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.mockup-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =======================================================
+   BUSINESSES SECTION
+   ======================================================= */
+.businesses-section {
+  width: 100%;
+  min-height: 100vh;
+  background: #02090a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 40px;
+}
+
+.businesses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.business-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.business-card-description {
+  font-size: 15px;
+  color: #fff;
+  opacity: 0.85;
+}
+
+.businesses-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+.cta-button {
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: 16px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: #fff;
+  color: #004c3f;
+  transform: translateY(-2px);
+}
+
+
+@media (min-width: 768px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-bottom-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 
 /* Responsive */
@@ -519,202 +595,6 @@ body {
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #000;
-  color: #fff;
-}
-
-.container {
-  width: 100%;
-  min-height: 100vh;
-}
-
-.commerce-section {
-  width: 100%;
-  min-height: 100vh;
-  background: #02090a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 40px;
-}
-
-.content-wrapper {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.main-title {
-  font-size: 72px;
-  font-weight: 600;
-  line-height: 1.1;
-  color: #fff;
-  margin-bottom: 48px;
-  letter-spacing: -0.03em;
-  max-width: 1000px;
-}
-
-.description {
-  font-size: 28px;
-  line-height: 1.5;
-  color: #fff;
-  margin-bottom: 80px;
-  max-width: 1100px;
-}
-
-.light-text {
-  font-weight: 300;
-  opacity: 0.8;
-}
-
-.bold-text {
-  font-weight: 700;
-}
-
-.mockups-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  width: 100%;
-}
-
-.mockup-card {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mockup-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
-}
-
-.mockup-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Businesses Section */
-.businesses-section {
-  width: 100%;
-  min-height: 100vh;
-  background: #02090a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 100px 40px;
-}
-
-.businesses-header {
-  margin-bottom: 80px;
-}
-
-.businesses-title {
-  font-size: 56px;
-  font-weight: 600;
-  line-height: 1.1;
-  color: #fff;
-  margin-bottom: 32px;
-  letter-spacing: -0.02em;
-  max-width: 700px;
-}
-
-.businesses-stats {
-  font-size: 16px;
-  font-weight: 400;
-  color: #fff;
-  opacity: 0.9;
-  max-width: 600px;
-}
-
-.businesses-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-bottom: 60px;
-}
-
-.business-card {
-  background: transparent;
-}
-
-.business-image {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 24px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.3s ease;
-}
-
-.business-image:hover {
-  transform: translateY(-8px);
-}
-
-.business-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.business-card-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 16px;
-  line-height: 1.3;
-}
-
-.business-card-description {
-  font-size: 15px;
-  font-weight: 400;
-  color: #fff;
-  opacity: 0.85;
-  line-height: 1.6;
-}
-
-.businesses-cta {
-  display: flex;
-  justify-content: center;
-  margin-top: 60px;
-}
-
-.cta-button {
-  background: transparent;
-  color: #fff;
-  border: 2px solid #fff;
-  padding: 16px 32px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.cta-button:hover {
-  background: #fff;
-  color: #004c3f;
-  transform: translateY(-2px);
-}
 
 @media (max-width: 1200px) {
   .main-title {
