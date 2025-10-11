@@ -1,7 +1,11 @@
 import React from "react";
 import "./Login.css";
+import { UserAuth } from "../../supabase/AutenContextProvider";
 
 export default function Login() {
+
+  const {signInWithGoogle} = UserAuth();
+
   return (
     <div className="login-wrapper">
       {/* Fondo animado */}
@@ -42,7 +46,7 @@ export default function Login() {
 
         {/* Botones alternativos */}
         <div className="d-flex flex-column gap-2 mt-4" style={{ maxWidth: "400px", margin: "auto" }}>
-          <button className="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2">
+          <button className="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2" onClick={signInWithGoogle} >
             <img
               src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
               alt="Google"
