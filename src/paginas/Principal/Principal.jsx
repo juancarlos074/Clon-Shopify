@@ -4,16 +4,16 @@ import { Link, Links, Navigate } from "react-router-dom";
 import './Principal.css';
 import { useEffect } from 'react';
 import { UserAuth } from '../../supabase/AutenContextProvider';
+import supabase from '../../supabase/Conexion';
 
 export default function Principal() {
 
-  const { Userid } = UserAuth();
-
   useEffect(() => {
   async function verificar() {
-    
+
+    const { data: usuario } = await supabase.auth.getUser();
     console.log("Estoy aqui mismo bro ");
-    console.log(Userid);
+    console.log(usuario);
 
     if (Userid != null) {
       Navigate("/Home");
