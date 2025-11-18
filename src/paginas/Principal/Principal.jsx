@@ -3,14 +3,19 @@ import { ChevronDown, PlayCircle } from 'lucide-react';
 import { Link, Links, Navigate } from "react-router-dom";
 import './Principal.css';
 import { useEffect } from 'react';
-import supabase from '../../supabase/Conexion';
+import { UserAuth } from '../../supabase/AutenContextProvider';
 
 export default function Principal() {
 
+  const { Userid } = UserAuth();
+
   useEffect(() => {
   async function verificar() {
-    const { data } = await supabase.auth.getSession();
-    if (data.session) {
+    
+    console.log("Estoy aqui mismo bro ");
+    console.log(Userid);
+
+    if (Userid != null) {
       Navigate("/Home");
     }
   }
