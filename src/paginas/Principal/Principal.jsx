@@ -1,9 +1,23 @@
 import { ShoppingBag, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
 import { ChevronDown, PlayCircle } from 'lucide-react';
-import { Link, Links } from "react-router-dom";
+import { Link, Links, Navigate } from "react-router-dom";
 import './Principal.css';
+import { useEffect } from 'react';
+import supabase from '../../supabase/Conexion';
 
 export default function Principal() {
+
+  useEffect(() => {
+  async function verificar() {
+    const { data } = await supabase.auth.getSession();
+    if (data.session) {
+      Navigate("/Home");
+    }
+  }
+  verificar();
+}, []);
+
+
   return (
     <>
       <section className="principal-page ">
