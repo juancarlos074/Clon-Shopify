@@ -12,6 +12,9 @@ export const AutenContextProvider = ({ children }) => {
     try {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: "google",
+        options: {
+          redirectTo: window.location.origin + "/home",
+        },
       });
       if (error) throw new Error("Ocurrió un error durante la autenticación");
 

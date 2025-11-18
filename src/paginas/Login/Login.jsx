@@ -35,14 +35,14 @@ export default function Login() {
         </p>
 
         {/* Input principal */}
-        <div className="input-group mb-3" style={{ maxWidth: "400px", margin: "auto" }}>
+        {/* <div className="input-group mb-3" style={{ maxWidth: "400px", margin: "auto" }}>
           <input
             type="email"
             className="form-control"
             placeholder="Correo electrónico"
           />
           <button className="btn btn-dark">Comenzar</button>
-        </div>
+        </div> */}
 
         {/* Botones alternativos */}
         <div className="d-flex flex-column gap-2 mt-4" style={{ maxWidth: "400px", margin: "auto" }}>
