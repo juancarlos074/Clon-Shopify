@@ -1,29 +1,33 @@
 import { ShoppingBag, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
 import { ChevronDown, PlayCircle } from 'lucide-react';
-import { Link, Links, Navigate } from "react-router-dom";
+import { Link, Links, Navigate, useNavigate } from "react-router-dom";
 import './Principal.css';
 import { useEffect } from 'react';
-import { UserAuth } from '../../supabase/AutenContextProvider';
 import supabase from '../../supabase/Conexion';
 
 export default function Principal() {
 
-  const { Userid } = UserAuth();
+    const navigate = useNavigate(); // ✅ HOOK CORRECTO
 
   useEffect(() => {
-  async function verificar() {
+    async function verificar() {
 
-    const { data: usuario } = await supabase.auth.getUser();
-    console.log("Estoy aqui mismo bro ");
-    console.log(usuario);
+      const { data, error } = await supabase.auth.getUser();
 
-    if (usuario != null) {
-      console.log("Estoy dentro del if");
-      Navigate("/Home");
+      console.log("Estoy aqui mismo bro ");
+      console.log(data);
+
+      if (data?.user) {
+        console.log("Estoy dentro del if");
+        navigate("/Home"); // ✅ FORMA CORRECTA
+      }
+      else{
+        console.log(error);
+      }
     }
-  }
-  verificar();
-}, []);
+
+    verificar();
+  }, [navigate]);
 
 
   return (
