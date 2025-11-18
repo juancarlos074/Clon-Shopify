@@ -79,8 +79,7 @@ async function insertarUsuario(user) {
     const { data: usuarioExistente, error: errorSelect } = await supabase
       .from("Usuarios")
       .select("Id")
-      .eq("Correo", user.email)
-      .maybeSingle(); // devuelve null si no existe
+      .eq("Correo", user.email).single();
 
     if (errorSelect) {
       console.error("❌ Error al buscar usuario:", errorSelect);
