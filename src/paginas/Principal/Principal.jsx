@@ -18,6 +18,7 @@ export default function Principal() {
     console.log(usuario);
 
     if (usuario != null) {
+      console.log("Estoy dentro del if");
       Navigate("/Home");
     }
   }
