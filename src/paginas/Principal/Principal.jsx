@@ -8,6 +8,8 @@ import supabase from '../../supabase/Conexion';
 
 export default function Principal() {
 
+  const { Userid } = UserAuth();
+
   useEffect(() => {
   async function verificar() {
 
@@ -15,7 +17,7 @@ export default function Principal() {
     console.log("Estoy aqui mismo bro ");
     console.log(usuario);
 
-    if (Userid != null) {
+    if (usuario != null) {
       Navigate("/Home");
     }
   }
