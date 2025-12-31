@@ -25,8 +25,6 @@ export default function Inventario() {
     const productosAdaptados = data.map((p) => ({
       id: p.id,
       nombre: p.Titulo,
-      tipo: p.Tipo,
-      proveedor: p.Proveedor,
       coleccion: p.Categoria,
       cantidad: p.Cantidad,
       precio: p.Precio,
@@ -72,8 +70,6 @@ export default function Inventario() {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Proveedor</th>
             <th>Colección</th>
             <th>Cantidad</th>
             <th>Precio</th>
@@ -90,8 +86,6 @@ export default function Inventario() {
             >
               <td>{p.id}</td>
               <td>{p.nombre}</td>
-              <td>{p.tipo}</td>
-              <td>{p.proveedor}</td>
               <td>{p.coleccion}</td>
               <td>{p.cantidad}</td>
               <td>${p.precio}</td>

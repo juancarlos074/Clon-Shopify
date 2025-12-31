@@ -56,7 +56,7 @@ export default function Login() {
             Continuar con Google
           </button>
 
-          <button className="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2">
+          {/* <button className="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2">
             <img
               src="https://cdn-icons-png.flaticon.com/512/731/731985.png"
               alt="Apple"
@@ -74,12 +74,12 @@ export default function Login() {
               height="20"
             />
             Continuar con Facebook
-          </button>
+          </button> */}
         </div>
 
-        <p className="text-muted mt-3">
+        {/* <p className="text-muted mt-3">
           o <a href="#">¿Ya tienes una cuenta de Shopify?</a>
-        </p>
+        </p> */}
 
         <small className="text-muted mt-3 px-3 d-block">
           Al continuar, aceptas los{" "}
@@ -88,7 +88,7 @@ export default function Login() {
         </small>
 
         <footer className="footer mt-5">
-          <div className="d-flex justify-content-center gap-3">
+          <div className="d-flex justify-content-center gap-3 ">
             <a href="#">Ayuda</a>
             <a href="#">Privacidad</a>
             <a href="#">Términos</a>

@@ -1,24 +1,15 @@
-/* =======================================================
-   RESET GLOBAL
-   ======================================================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background: #ffffff;
 }
 
 .principal-page{
   color: #fff;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
+  -moz-osx-font-smoothing: grayscale; 
 }
 
 .container {
@@ -26,9 +17,6 @@ body {
   min-height: 100vh;
 }
 
-/* =======================================================
-   MAIN CONTENT + FOOTER BASE
-   ======================================================= */
 .main-content {
   flex: 1;
   display: flex;
@@ -176,9 +164,6 @@ body {
   height: 1.25rem;
 }
 
-/* =======================================================
-   HERO + NAVBAR
-   ======================================================= */
 .hero-container {
   position: relative;
   width: 100%;
@@ -193,7 +178,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -2;
+  z-index: 0;
 }
 
 .video-overlay {
@@ -206,7 +191,6 @@ body {
   z-index: -1;
 }
 
-/* NAVBAR */
 .navbar {
   position: fixed;
   top: 0;
@@ -307,7 +291,6 @@ body {
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
 }
 
-/* HERO CONTENT */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -374,7 +357,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* INFO CARD */
 .info-card {
   position: absolute;
   bottom: 60px;
@@ -388,9 +370,6 @@ body {
   color: #fff;
 }
 
-/* =======================================================
-   COMMERCE SECTION
-   ======================================================= */
 .commerce-section {
   width: 100%;
   min-height: 100vh;
@@ -442,9 +421,6 @@ body {
   object-fit: cover;
 }
 
-/* =======================================================
-   BUSINESSES SECTION
-   ======================================================= */
 .businesses-section {
   width: 100%;
   min-height: 100vh;

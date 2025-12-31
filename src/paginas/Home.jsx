@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <section className="bg-body container d-flex flex-column align-items-center justify-content-center text-center" style={{width:"70%"}}>
+    <section className="bg-body container d-flex flex-column align-items-center text-center w-75">
       <section>
         <section className="d-flex" >
           <h5 className="p-2 w-100">¡Te damos la bienvenida a Shopify!</h5>
@@ -10,10 +10,10 @@ export default function Home() {
         <section>
           <a href="">Agregar nombre de la tienda 🖋️</a>
 
-          <section className="d-flex" >
+          <section className="d-flex ">
             <section className="w-50">
-              <figure>
-                <video src=""></video>
+              <figure   className="h-50 p-2">
+                <img  className="w-50"  src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/onboarding-module-products-initial-BdOVY0npjs5p.png" alt="" />
               </figure>
               <section >
                 <section>
@@ -29,8 +29,8 @@ export default function Home() {
             </section>
 
             <section className="w-50">
-              <figure >
-                <img  className="w-50" src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/es/assets/store-preview-design-store-task-placeholder-window-DXgkFfrHD_Lh.png" alt=""/>
+              <figure className="h-50 p-2">
+                <img  className="w-50"  src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/en/assets/onboarding-module-generate-theme-initial-Dw0fOV7CkPTE.png" alt=""/>
               </figure>
               <section >
                 <h6>Personalizar tu tienda online</h6>

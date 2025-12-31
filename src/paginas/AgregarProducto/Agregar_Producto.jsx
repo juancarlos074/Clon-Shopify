@@ -8,90 +8,126 @@ export default function Agregar_Producto() {
   const [titulo, setTitulo] = useState("");
   const [descripcion, setDescripcion] = useState("");
   const [Categoria, setCategoria] = useState("");
-  const [Precio, setPrecio] = useState(null);
-  const [Precioacomprar, setPrecioacomprar] = useState(null);
-  const [PrecioUnitario, setPrecioUnitario] = useState(null);
-  const [Costoporartículo, setCostoporartículo] = useState(null);
-  const [Cantidad, setcantidad] = useState(null);
+  const [Precio, setPrecio] = useState("");
+  const [PrecioUnitario, setPrecioUnitario] = useState("");
+  const [Costoporartículo, setCostoporartículo] = useState("");
+  const [Cantidad, setcantidad] = useState("");
   const [Sucursal, setSucursal] = useState("");
-  const [SKU, setSKU] = useState("");
-  const [Codigo, setCodigo] = useState("");
   const [Embalaje, setEmbalaje] = useState("");
-  const [Peso, setPeso] = useState(null);
+  const [Peso, setPeso] = useState("");
   const [Unidad_Peso, serUnidad_Peso] = useState("");
   const [País, setPaís] = useState("");
-  const [CódigoSA, setCódigoSA] = useState("");
-  const [TítuloSEO, setTítuloSEO] = useState("");
-  const [DescripciónSEO, setDescripciónSEO] = useState("");
-  const [Estado, setEstado] = useState("");
-  const [Tipo, setTipo] = useState("");
-  const [Proveedor, setProveedor] = useState("");
-  const [Colecciones, setColecciones] = useState("");
-  const [Etiquetas, setEtiquetas] = useState("");
-  const [Plantilla, setPlantilla] = useState("");
-    
-  console.log(Userid);
+  const [Estado, setEstado] = useState(true);
+
+  //Variables para guardar la foto del producto
+  const [imagen, setImagen] = useState(null);
+  const [preview, setPreview] = useState(null);
+  let imageUrl = null;
 
   const guardarProducto = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // evita recarga
+
     try {
-      console.log("Estot aqui bro");
 
-      
-      if (!titulo || !descripcion) {
-          alert("Debes llenar al menos Título, Descripción y SKU");
-          return;
-      }
+      if (imagen) {
+      console.log("Estoy en la parte de la sbida del video");
+      imageUrl = await subirImagen(imagen);
+    }
 
-        console.log("Estot aqui bro 2");
-
-      if (!Userid) {
-          console.error("User ID is missing.");
-          alert("Error de autenticación: El ID de usuario no está disponible.");
-          return;
-      }
-
-        console.log("Estot aqui bro 3");
-
-   
-      const { data, error: supabaseError } = await supabase
+      const { data, error } = await supabase
         .from("Producto")
         .insert([
           {
+            Id_Usuario: Userid,
             Titulo: titulo,
             Descripcion: descripcion,
-            Id_Usuario: Userid,
-            Categoria: Categoria,
+            Categoria:Categoria,
             Precio:Precio,
-            Precio_Comparacion:Precioacomprar,
             Precio_Unitario:PrecioUnitario,
             Costo_Por_Item:Costoporartículo,
-            Sku:SKU,
-            Cantidad:Cantidad,
-            Sucursal:Sucursal,
-            Codigo_Sku:Codigo,
             Embalaje:Embalaje,
             Peso:Peso,
             Unidad_Peso:Unidad_Peso,
+            Pais_Origen:País,
+            Estado:Estado,
+            Cantidad:Cantidad,
+            Sucursal:Sucursal,
+            Imagen_URL: imageUrl
           }
         ])
         .select();
 
-      if (supabaseError) {
-        console.error("❌ Error al insertar:", supabaseError);
-        alert(`❌ Ocurrió un error al guardar el producto: ${supabaseError.message}`);
+      if (error) {
+        console.error("❌ Error al insertar:", error);
+        alert(`❌ Error al guardar: ${error.message}`);
         return;
       }
 
       console.log("✅ Producto insertado:", data);
       alert("✅ Producto guardado correctamente");
 
+      // LIMPIAR FORMULARIO
+      limpiarFormulario();
+      console.log("Acabo de limpiar el formulario bro");
+
     } catch (err) {
       console.error("🚨 Error inesperado:", err);
-      alert("🚨 Error inesperado al guardar el producto.");
+      alert("🚨 Error inesperado");
     }
   };
 
+  //Funcion para mostrar la imagen que se seleeciono
+  const manejarArchivo = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setImagen(file);
+    setPreview(URL.createObjectURL(file));
+  };
+
+  //Funcion para poder subir la imagen al storage del supabe y odtener la url
+  const subirImagen = async (imagen) => {
+    console.log("estoy en la funcion como tal");
+
+    const nombreArchivo = `${Date.now()}_${imagen.name}`;
+
+    const { error } = await supabase.storage
+      .from("Imagnes")
+      .upload(nombreArchivo, imagen);
+
+    if (error) {
+      console.error(error);
+      return null;
+    }
+
+    const { data } = supabase.storage
+      .from("Imagnes")
+      .getPublicUrl(nombreArchivo);
+
+    return data.publicUrl;
+  };
+
+
+  //Funcion para poder limpiar los usestate del sistema
+  const limpiarFormulario = () => {
+    setTitulo("");
+    setDescripcion("");
+    setCategoria("");
+    setPrecio("");
+    setPrecioUnitario("");
+    setCostoporartículo("");
+    setcantidad("");
+    setSucursal("");
+    setEmbalaje("");
+    setPeso("");
+    serUnidad_Peso("");
+    setPaís("");
+    setEstado(true);
+
+     // Limpiar imagen
+    setImagen(null);
+    setPreview(null);
+  };
 
   return (
     <div className="container-fluid">
@@ -109,7 +145,8 @@ export default function Agregar_Producto() {
                 className="form-control"
                 name="titulo" // ¡Mantenemos el atributo name para usar FormData!
                 placeholder="Camiseta de manga corta"
-                 onChange={(e) => setTitulo(e.target.value)}
+                value={titulo}
+                onChange={(e) => setTitulo(e.target.value)}
               />
             </div>
 
@@ -121,6 +158,7 @@ export default function Agregar_Producto() {
                 rows="5"
                 name="descripcion" // ¡Mantenemos el atributo name!
                 placeholder="Agrega una descripción detallada del producto"
+                value={descripcion}
                 onChange={(e) => setDescripcion(e.target.value)}
               ></textarea>
             </div>
@@ -128,12 +166,27 @@ export default function Agregar_Producto() {
             {/* Multimedia */}
             <div className="mb-3 border p-3 rounded bg-light">
               <h5>Multimedia</h5>
-              <input type="file" className="form-control mb-2" multiple name="multimedia" />
-              <button type="button" className="btn btn-outline-secondary btn-sm">
-                Seleccionar existente
-              </button>
-            </div>
 
+              <input
+                type="file"
+                className="form-control mb-2"
+                accept="image/*"
+                onChange={manejarArchivo}
+              />
+              {preview && (
+                <img
+                  src={preview}
+                  alt="preview"
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    objectFit: "cover",
+                    borderRadius: "8px",
+                  }}
+                />
+              )}
+            </div>
+  
             {/* Categoría */}
             <div className="mb-3 border p-3 rounded bg-light">
               <h5>Categoría</h5>
@@ -154,7 +207,7 @@ export default function Agregar_Producto() {
             <div className="mb-3 border p-3 rounded bg-light">
               <h5>Precio</h5>
               <div className="row">
-                <div className="col-md-6">
+                <div className="col-md-12">
                   <label className="form-label">Precio</label>
                   <input 
                     type="number" 
@@ -163,17 +216,6 @@ export default function Agregar_Producto() {
                     placeholder="0,00"
                     value={Precio}
                     onChange={(e) => setPrecio(e.target.value)}
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="form-label">Comparar con</label>
-                  <input 
-                    type="number" 
-                    className="form-control" 
-                    name="compararPrecio" 
-                    placeholder="0,00" 
-                    value={Precioacomprar}
-                    onChange={(e) => setPrecioacomprar(e.target.value)}
                   />
                 </div>
               </div>
@@ -189,17 +231,6 @@ export default function Agregar_Producto() {
                   onChange={(e) => setPrecioUnitario(e.target.value)}
                 />
               </div>
-
-              <div className="form-check mt-3">
-                <input 
-                  className="form-check-input" 
-                  type="checkbox" 
-                  name="cobrarImpuestos" 
-                  defaultChecked={true} // Usamos defaultChecked en lugar de checked
-                />
-                <label className="form-check-label">Cobrar impuestos</label>
-              </div>
-
               <div className="mt-3">
                 <label className="form-label">Costo por artículo</label>
                 <input 
@@ -216,15 +247,6 @@ export default function Agregar_Producto() {
             {/* Inventario */}
             <div className="mb-3 border p-3 rounded bg-light">
               <h5>Inventario</h5>
-              <div className="form-check mb-3">
-                <input 
-                  className="form-check-input" 
-                  type="checkbox" 
-                  name="venderSinExistencias" 
-                  defaultChecked={false} 
-                />
-                <label className="form-check-label">Vender sin existencias</label>
-              </div>
 
               <div className="row">
                 <div className="col-md-6">
@@ -250,42 +272,11 @@ export default function Agregar_Producto() {
                   />
                 </div>
               </div>
-
-              <div className="mt-3">
-                <label className="form-label">SKU</label>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  name="sku" 
-                  value={SKU}
-                  onChange={(e) => setSKU(e.target.value)}
-                />
-              </div>
-
-              <div className="mt-3">
-                <label className="form-label">Código</label>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  name="Código"
-                  value={Codigo}
-                  onChange={(e) => setCodigo(e.target.value)}
-                />
-              </div>
             </div>
 
             {/* Envío */}
             <div className="mb-3 border p-3 rounded bg-light">
               <h5>Envío</h5>
-              <div className="form-check mb-3">
-                <input 
-                  className="form-check-input" 
-                  type="checkbox" 
-                  name="productoFisico" 
-                  defaultChecked={true} 
-                />
-                <label className="form-check-label">Producto físico</label>
-              </div>
 
               <label className="form-label">Embalaje</label>
               <input 
@@ -333,38 +324,6 @@ export default function Agregar_Producto() {
                   onChange={(e) => setPaís(e.target.value)}
                 />
               </div>
-
-              <div className="mt-3">
-                <label className="form-label">Código SA</label>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  name="codigoSA" 
-                  value={CódigoSA}
-                  onChange={(e) => setCódigoSA(e.target.value)}
-                />
-              </div>
-            </div>
-
-            {/* SEO */}
-            <div className="mb-3 border p-3 rounded bg-light">
-              <h5>SEO</h5>
-              <label className="form-label">Título SEO</label>
-              <input 
-                type="text" 
-                className="form-control" 
-                name="tituloSEO" 
-                value={TítuloSEO}
-                onChange={(e) => setTítuloSEO(e.target.value)}
-              />
-              <label className="form-label mt-3">Descripción SEO</label>
-              <textarea 
-                className="form-control" 
-                rows="3" 
-                name="descripcionSEO" 
-                value={DescripciónSEO}
-                onChange={(e) => setDescripciónSEO(e.target.value)}
-              ></textarea>
             </div>
 
             <button type="submit" className="btn btn-primary">
@@ -378,94 +337,13 @@ export default function Agregar_Producto() {
           {/* Estado */}
           <div className="border rounded p-3 mb-3 bg-light">
             <h5>Estado</h5>
-            <select 
-              className="form-select mt-2" 
-              name="estado" 
-              defaultValue="Activo"
-              value={Estado}
-              onChange={(e) => setEstado(e.target.value)}
+           <select
+              className="form-select mt-2"
+              value={Estado ? "true" : "false"}
+              onChange={(e) => setEstado(e.target.value === "true")}
             >
-              <option value="Activo">Activo</option>
-              <option value="Inactivo">Inactivo</option>
-            </select>
-          </div>
-
-          {/* Publicación */}
-          <div className="border rounded p-3 mb-3 bg-light">
-            <h5>Publicación</h5>
-            <div className="form-check">
-              <input 
-                className="form-check-input" 
-                type="checkbox" 
-                name="tiendaOnline" 
-                defaultChecked={true} 
-              />
-              <label className="form-check-label">Tienda online</label>
-            </div>
-            <div className="form-check">
-              <input 
-                className="form-check-input" 
-                type="checkbox" 
-                name="pointOfSale" 
-                defaultChecked={false} 
-              />
-              <label className="form-check-label">Point of Sale</label>
-            </div>
-          </div>
-
-          {/* Organización */}
-          <div className="border rounded p-3 mb-3 bg-light">
-            <h5>Organización del producto</h5>
-            <label className="form-label mt-2">Tipo</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="tipo" 
-              value={Tipo}
-              onChange={(e) => setTipo(e.target.value)}
-            />
-
-            <label className="form-label mt-3">Proveedor</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="proveedor" 
-              value={Proveedor}
-              onChange={(e) => setProveedor(e.target.value)}
-            />
-
-            <label className="form-label mt-3">Colecciones</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="colecciones" 
-              value={Colecciones}
-              onChange={(e) => setColecciones(e.target.value)}
-            />
-
-            <label className="form-label mt-3">Etiquetas</label>
-            <input 
-              type="text" 
-              className="form-control" 
-              name="etiquetas" 
-              value={Etiquetas}
-              onChange={(e) => setEtiquetas(e.target.value)}
-            />
-          </div>
-
-          {/* Plantilla de tema */}
-          <div className="border rounded p-3 bg-light">
-            <h5>Plantilla de tema</h5>
-            <select 
-              className="form-select mt-2" 
-              name="plantillaTema" 
-              defaultValue="Producto predeterminado"
-              value={Plantilla}
-              onChange={(e) => setPlantilla(e.target.value)}
-
-            >
-              <option value="Producto predeterminado">Producto predeterminado</option>
-              <option value="Plantilla personalizada">Plantilla personalizada</option>
+              <option value="true">Activo</option>
+              <option value="false">Inactivo</option>
             </select>
           </div>
         </div>

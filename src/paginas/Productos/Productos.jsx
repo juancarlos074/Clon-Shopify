@@ -11,7 +11,6 @@ export default function Productos() {
 
                     <section className="d-flex justify-content-between">
                         <section>
-                            <p>All  +</p>
                         </section>
                         <section>
                             <button>🔍📶</button>

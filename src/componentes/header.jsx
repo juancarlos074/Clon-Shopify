@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Header() {
+
+  const navigate = useNavigate();
+
   return (
     <div className="encabezado bg-black d-flex w-100 justify-content-between align-items-center p-2">
       
@@ -8,10 +13,15 @@ export default function Header() {
           src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/es/assets/shopify-glyph-white-DZNyE9BvHIk-.svg"
           alt=""
           className="me-2"
+            onClick={() => navigate("/")}
+            syle={{ cursor: "pointer" }}
+          
         />
         <img
           src="https://cdn.shopify.com/shopifycloud/web/assets/v1/vite/client/es/assets/shopify-wordmark-monochrome-CpVsfBAAmxEP.svg"
           alt=""
+            onClick={() => navigate("/")}
+            style={{ cursor: "pointer" }}
         />
       </figure>
 

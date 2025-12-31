@@ -14,7 +14,7 @@ import Login from './paginas/Login/Login'
 function App() {
   const location = useLocation()
 
-  // 🧠 Ocultar Header y Menuprincipal en "/" y "/Login"
+  // Ocultar Header y Menuprincipal en "/" y "/Login"
   const hideLayout = location.pathname === "/" || location.pathname === "/Login"
 
   return (

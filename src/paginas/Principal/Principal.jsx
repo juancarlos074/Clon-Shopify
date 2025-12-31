@@ -1,49 +1,27 @@
 import { ShoppingBag, Facebook, Twitter, Youtube, Instagram } from 'lucide-react';
 import { ChevronDown, PlayCircle } from 'lucide-react';
-import { Link, Links, Navigate, useNavigate } from "react-router-dom";
+import { Link, Links, Navigate } from "react-router-dom";
 import './Principal.css';
-import { useEffect } from 'react';
-import supabase from '../../supabase/Conexion';
 
 export default function Principal() {
 
-    const navigate = useNavigate(); // ✅ HOOK CORRECTO
-
-  useEffect(() => {
-    async function verificar() {
-
-      const { data, error } = await supabase.auth.getUser();
-
-      console.log("Estoy aqui mismo bro ");
-      console.log(data);
-
-      if (data?.user) {
-        console.log("Estoy dentro del if");
-        navigate("/Home"); // ✅ FORMA CORRECTA
-      }
-      else{
-        console.log(error);
-      }
-    }
-
-    verificar();
-  }, [navigate]);
-
-
   return (
     <>
-      <section className="principal-page ">
+      <section className="principal-page bg-black">
           <main>
             <div className="hero-container">
-            <video
-              className="video-background"
-              autoPlay
-              loop
-              muted
-              playsInline
-            >
-              <source src="5542eb87-c72c-43b0-8f3c-f5a9a49a6fd7.mp4" type="video/mp4" />
-            </video>
+              <video
+                className="video-background"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source
+                  src="5542eb87-c72c-43b0-8f3c-f5a9a49a6fd7.mp4"
+                  type="video/mp4"
+                />
+              </video>
 
             <div className="video-overlay"></div>
 
@@ -89,7 +67,7 @@ export default function Principal() {
                 </p>
                 <div className="hero-buttons">
                   <button className="btn-primary">
-                    Comienza gratis
+                    <Link to={"/Login"}>Comienza gratis</Link> 
                   </button>
                   <button className="btn-secondary">
                     Ver planes
@@ -106,7 +84,7 @@ export default function Principal() {
             </div>
           </div>
 
-            <div className="container ">
+            <div className="container">
               <section className="commerce-section">
                 <div className="content-wrapper">
                   <h1 className="main-title">
@@ -146,55 +124,135 @@ export default function Principal() {
 
               <section className="businesses-section">
                 <div className="content-wrapper">
-                  <div className="businesses-header">
-                    <h2 className="businesses-title">
-                      Para todos, desde emprendedores hasta empresas
-                    </h2>
-                    <p className="businesses-stats">
-                      Millones de comerciantes de todos los tamaños han generado colectivamente US$1.000.000.000.000 en ventas en Shopify.
-                    </p>
+                  
+                  <div
+                    id="carouselExampleCaptions"
+                    className="carousel slide businesses-carousel"
+                    data-bs-ride="carousel"
+                  >
+                    {/* Slides */}
+                    <div className="carousel-inner">
+
+                      {/* SLIDE 1 */}
+                      <div className="carousel-item active">
+                        <div className="content-wrapper text-center">
+                          <div className="businesses-header mb-4">
+                            <h2 className="businesses-title">
+                              Para todos, desde emprendedores hasta empresas
+                            </h2>
+                            <p className="businesses-stats">
+                              Millones de comerciantes de todos los tamaños han generado colectivamente
+                              US$1.000.000.000.000 en ventas en Shopify.
+                            </p>
+                          </div>
+
+                          <div className="business-card mx-auto" style={{ maxWidth: "600px" }}>
+                            <div className="business-image">
+                              <img
+                                className="img-fluid rounded"
+                                src="https://cdn.shopify.com/b/shopify-brochure2-assets/4ce35eba1e546a23ff875c3eba8b5705.jpg?originalWidth=914&originalHeight=600"
+                                alt="Emprendedora"
+                              />
+                            </div>
+                            <h3 className="business-card-title mt-3">
+                              Comienza con rapidez
+                            </h3>
+                            <p className="business-card-description">
+                              Megan Brie Carmo, vendedora en solitario, pudo en meses sumar Solace
+                              Tallow para vender sus velas y productos para el cuidado de la piel
+                              orgánicos tanto online como en mercados locales.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* SLIDE 2 */}
+                      <div className="carousel-item">
+                        <div className="content-wrapper text-center">
+                          <div className="businesses-header mb-4">
+                            <h2 className="businesses-title">
+                              Para todos, desde emprendedores hasta empresas
+                            </h2>
+                            <p className="businesses-stats">
+                              Millones de comerciantes de todos los tamaños han generado colectivamente
+                              US$1.000.000.000.000 en ventas en Shopify.
+                            </p>
+                          </div>
+                          <div className="business-card mx-auto" style={{ maxWidth: "600px" }}>
+                            <div className="business-image">
+                              <img
+                                className="img-fluid rounded"
+                                src="https://cdn.shopify.com/b/shopify-brochure2-assets/2083b4178afc5db338c7d6081f8a5838.jpg?originalWidth=916&originalHeight=600"
+                                alt="Equipo de empresa"
+                              />
+                            </div>
+                            <h3 className="business-card-title mt-3">
+                              Crece todo lo que quieras
+                            </h3>
+                            <p className="business-card-description">
+                              La marca de atletismo Gymshark pasó de trabajar en un garaje a
+                              convertirse en la empresa mundial que es hoy, con más de
+                              0,5.000 millones en ventas anuales.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* SLIDE 3 */}
+                      <div className="carousel-item">
+                        <div className="content-wrapper text-center">
+                          <div className="businesses-header mb-4">
+                            <h2 className="businesses-title">
+                              Para todos, desde emprendedores hasta empresas
+                            </h2>
+                            <p className="businesses-stats">
+                              Millones de comerciantes de todos los tamaños han generado colectivamente
+                              US$1.000.000.000.000 en ventas en Shopify.
+                            </p>
+                          </div>
+                          <div className="business-card mx-auto" style={{ maxWidth: "600px" }}>
+                            <div className="business-image">
+                              <img
+                                className="img-fluid rounded"
+                                src="https://cdn.shopify.com/b/shopify-brochure2-assets/7c3d68ca99f2f743df8cb1187bbd2cb1.jpg?originalWidth=914&originalHeight=600"
+                                alt="Tienda Mattel"
+                              />
+                            </div>
+                            <h3 className="business-card-title mt-3">
+                              Aumenta las expectativas
+                            </h3>
+                            <p className="business-card-description">
+                              Con la ayuda de Shopify para empresas, Mattel vendió sus icónicos
+                              juguetes directamente a clientes en todo el mundo.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                    {/* Controles */}
+                    <button
+                      className="carousel-control-prev"
+                      type="button"
+                      data-bs-target="#carouselExampleCaptions"
+                      data-bs-slide="prev"
+                    >
+                      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Previous</span>
+                    </button>
+
+                    <button
+                      className="carousel-control-next"
+                      type="button"
+                      data-bs-target="#carouselExampleCaptions"
+                      data-bs-slide="next"
+                    >
+                      <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span className="visually-hidden">Next</span>
+                    </button>
                   </div>
 
-                  <div className="businesses-grid">
-                    <div className="business-card">
-                      <div className="business-image">
-                        <img
-                          src="https://cdn.shopify.com/b/shopify-brochure2-assets/4ce35eba1e546a23ff875c3eba8b5705.jpg?originalWidth=914&originalHeight=600"
-                          alt="Emprendedora"
-                        />
-                      </div>
-                      <h3 className="business-card-title">Comienza con rapidez</h3>
-                      <p className="business-card-description">
-                        Megan Brie Carmo, vendedora en solitario, pudo en meses sumar Solace Tallow para vender sus velas y productos para el cuidado de la piel orgánicos tanto online como en mercados locales.
-                      </p>
-                    </div>
-
-                    <div className="business-card">
-                      <div className="business-image">
-                        <img
-                          src="https://cdn.shopify.com/b/shopify-brochure2-assets/2083b4178afc5db338c7d6081f8a5838.jpg?originalWidth=916&originalHeight=600"
-                          alt="Equipo de empresa"
-                        />
-                      </div>
-                      <h3 className="business-card-title">Crece todo lo que quieras</h3>
-                      <p className="business-card-description">
-                        La marca de atletismo Gymshark pasó de trabajar en un garaje a convertirse en la empresa mundial que es hoy, con más de 0,5.000 millones en ventas anuales.
-                      </p>
-                    </div>
-
-                    <div className="business-card">
-                      <div className="business-image">
-                        <img
-                          src="https://cdn.shopify.com/b/shopify-brochure2-assets/7c3d68ca99f2f743df8cb1187bbd2cb1.jpg?originalWidth=914&originalHeight=600"
-                          alt="Tienda Mattel"
-                        />
-                      </div>
-                      <h3 className="business-card-title">Aumenta las expectativas</h3>
-                      <p className="business-card-description">
-                        Con la ayuda de Shopify para empresas, Mattel vendió sus icónicos juguetes directamente a clientes en todo el mundo.
-                      </p>
-                    </div>
-                  </div>
 
                   <div className="businesses-cta">
                     <button className="cta-button">
